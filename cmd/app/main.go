@@ -4,7 +4,6 @@ import (
 	"flag"
 
 	"github.com/pondparinya/go-gateways/internal/config"
-	"github.com/pondparinya/go-gateways/internal/entity"
 	"github.com/pondparinya/go-gateways/pkg/log"
 )
 
@@ -19,10 +18,10 @@ func main() {
 	// create root logger tagged with server version
 	logger := log.New().With(nil, "APP_VERSION", Version)
 
-	if err := config.LoadConfigs("APP", *flagConfig, *flagStage, entity.APP); err != nil {
+	if err := config.LoadConfigs("APP", *flagConfig, *flagStage, config.APP); err != nil {
 		panic(err)
 	}
 
-	logger.Info(entity.APP.Port)
+	logger.Info(config.APP.Port)
 
 }
